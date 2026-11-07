@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { clampA4, midiToFrequency, readNote } from './audio/notes'
 import { ToneVoice, type Waveform } from './audio/tone'
 import { Piano } from './components/Piano'
+import { SuiteNav } from './components/SuiteNav'
 import { RepeatButton } from './components/RepeatButton'
 import { Ruler } from './components/Ruler'
 import { clampHz, formatHz, hzToSlider, parseHz, roundHz, shiftSemitones, SLIDER_STEPS, sliderToHz, snapToNote } from './frequency'
@@ -117,6 +118,7 @@ export function App() {
         <h1 className="brand">
           <span className="brand__mark" aria-hidden="true">∿</span> Frequency Player
         </h1>
+        <SuiteNav current="frequency-player" />
         <label className="select">
           <span className="visually-hidden">Reference pitch</span>
           <select value={a4} onChange={(e) => setA4(clampA4(Number(e.target.value)))}>
@@ -129,7 +131,8 @@ export function App() {
         </label>
       </header>
 
-      <main>
+      <main className="layout">
+        <div className="layout__primary">
         <section className={`hero ${playing ? 'hero--playing' : ''}`}>
           <div className="hero__note">
             <span className="hero__label">
@@ -226,6 +229,7 @@ export function App() {
             ))}
           </div>
         </section>
+        </div>
 
         <div className="transport">
           <button type="button" className={`playbtn ${playing ? 'playbtn--on' : ''}`} onClick={toggle} aria-pressed={playing}>
@@ -248,6 +252,7 @@ export function App() {
                   <svg viewBox="0 0 28 24" aria-hidden="true">
                     <path d={w.path} />
                   </svg>
+                  <span className="wave__label">{w.label}</span>
                 </button>
               ))}
             </div>

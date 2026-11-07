@@ -15,6 +15,8 @@ Frequency Player is a tone and frequency generator that runs in the browser. Pla
 - Presets jump to common test tones: 60 Hz mains hum, middle C, 432 Hz, A440, 1 kHz, and 10 kHz.
 - Keyboard: Space plays and stops, Up and Down move a semitone (Shift for an octave), Left and Right move 1 Hz (Shift for 0.1 Hz).
 - Frequency, waveform, volume, snap, and reference pitch are remembered between visits.
+- **App switcher:** the links at the top open the sibling tools, Instrument Tuner (Tuner) and Pitch Tracker (Pitch).
+- **Layout:** on phones the play button, waveforms, and volume stay pinned to the bottom of the screen; on desktops they sit in a column beside the dial and the piano spans the full width.
 
 Start at a low volume. High frequencies and loud tones can damage hearing and small speakers, and many phone and laptop speakers cannot reproduce frequencies below about 100 Hz.
 

@@ -1,7 +1,7 @@
 {
   "name": "frequency-player",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "license": "MIT",
   "type": "module",
   "homepage": "https://ronpicard.github.io/frequency-player/",

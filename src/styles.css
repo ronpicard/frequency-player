@@ -563,3 +563,250 @@ main {
     font-size: 1.1rem;
   }
 }
+
+/* ---- Suite switcher, shared by the three music apps ---- */
+
+.suite {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 999px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+}
+
+.suite__item {
+  padding: 6px 12px;
+  border-radius: 999px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+a.suite__item:hover {
+  color: var(--text);
+  background: var(--panel-2);
+}
+
+.suite__item--on {
+  background: var(--panel-2);
+  color: var(--accent);
+}
+
+/* ---- Layout: one column on phones, two on wide screens ---- */
+
+.topbar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas: 'brand suite control';
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.topbar .brand {
+  grid-area: brand;
+}
+
+.topbar .suite {
+  grid-area: suite;
+  justify-self: center;
+}
+
+.topbar > :last-child {
+  grid-area: control;
+}
+
+.layout,
+.layout__primary,
+.layout__secondary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  align-content: start;
+}
+
+@media (max-width: 639px) {
+  .topbar {
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      'brand control'
+      'suite suite';
+    gap: 10px;
+  }
+
+  .topbar > :last-child {
+    justify-self: end;
+  }
+
+  .topbar .suite {
+    justify-self: stretch;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+  }
+
+}
+
+.wave__label {
+  display: none;
+}
+
+@media (max-width: 559px) {
+  .layout .keyboard {
+    order: 1;
+  }
+
+  .layout .presets {
+    order: 2;
+  }
+
+  /* Playback stays in reach at the bottom of the screen while you scroll. */
+  .transport {
+    order: 3;
+    position: sticky;
+    bottom: max(8px, env(safe-area-inset-bottom));
+    z-index: 5;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 10px;
+    padding: 10px;
+    background: color-mix(in srgb, var(--panel) 88%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 12px 40px -8px rgba(0, 0, 0, 0.7);
+  }
+
+  .transport .playbtn {
+    grid-column: 1 / -1;
+    height: 52px;
+  }
+
+  .transport .controls {
+    grid-column: 1 / -1;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 10px;
+  }
+
+  .transport .waves {
+    grid-template-columns: repeat(4, 40px);
+  }
+
+  .transport .wave {
+    height: 40px;
+  }
+
+  .volume output {
+    display: none;
+  }
+}
+
+@media (min-width: 960px) {
+  .app {
+    max-width: 1180px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .layout {
+    grid-template-columns: minmax(0, 1.55fr) minmax(300px, 1fr);
+    grid-template-areas:
+      'primary transport'
+      'primary presets'
+      'keyboard keyboard';
+    grid-template-rows: auto 1fr auto;
+    gap: 20px 24px;
+    align-items: start;
+  }
+
+  .layout__primary {
+    grid-area: primary;
+  }
+
+  .transport {
+    grid-area: transport;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 20px;
+  }
+
+  .presets {
+    grid-area: presets;
+    justify-content: flex-start;
+    align-content: flex-start;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px;
+  }
+
+  .presets::before {
+    content: 'Presets';
+    flex-basis: 100%;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+
+  .keyboard {
+    grid-area: keyboard;
+  }
+
+  .playbtn {
+    width: 100%;
+    height: 72px;
+    border-radius: 999px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    font-size: 1.25rem;
+  }
+
+  .playbtn span {
+    font-size: 1.3rem;
+  }
+
+  .waves {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .wave {
+    height: 52px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .wave__label {
+    display: inline;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .wave--on .wave__label {
+    color: var(--accent);
+  }
+
+  .hero {
+    padding: 24px;
+  }
+
+  .hero__hz,
+  .hero__edit {
+    font-size: 6.5rem;
+  }
+
+  .ruler {
+    height: 88px;
+  }
+
+  .piano__keys {
+    height: 180px;
+  }
+}
