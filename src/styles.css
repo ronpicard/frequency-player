@@ -1,16 +1,17 @@
 :root {
-  --bg: #0b0f14;
-  --panel: #131a22;
-  --panel-2: #1a232e;
-  --line: #263240;
-  --text: #e8eef5;
-  --muted: #8b9aab;
-  --accent: #a78bfa;
-  --accent-ink: #1b1036;
-  --good: #3ddc84;
-  --warn: #ffc857;
-  --bad: #ff6b6b;
-  --radius: 16px;
+  --bg: #070912;
+  --panel: #121829;
+  --panel-2: #1b2340;
+  --line: #2e3a5c;
+  --text: #f4f7ff;
+  --muted: #aab6d3;
+  --accent: #b78cff;
+  --accent-2: #ff5ecf;
+  --accent-ink: #1c0840;
+  --good: #3dff9a;
+  --warn: #ffd23f;
+  --bad: #ff4d6d;
+  --radius: 18px;
   color-scheme: dark;
   font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   color: var(--text);
@@ -25,7 +26,7 @@
 body {
   margin: 0;
   min-height: 100dvh;
-  background: radial-gradient(ellipse at top, #1a1530 0%, var(--bg) 60%) fixed;
+  background: var(--bg);
 }
 
 button,
@@ -809,4 +810,322 @@ a.suite__item:hover {
   .piano__keys {
     height: 180px;
   }
+}
+
+
+/* ---- Theme: vivid, high-contrast layer over the base styles ---- */
+
+body {
+  background:
+    radial-gradient(60vmax 42vmax at -5% -12%, color-mix(in srgb, var(--accent) 24%, transparent), transparent 70%),
+    radial-gradient(52vmax 40vmax at 105% 0%, color-mix(in srgb, var(--accent-2) 20%, transparent), transparent 70%),
+    radial-gradient(70vmax 50vmax at 50% 125%, color-mix(in srgb, var(--accent-2) 12%, transparent), transparent 70%),
+    var(--bg);
+  background-attachment: fixed;
+}
+
+.hero,
+.steps,
+.sweep,
+.keyboard,
+.transport {
+  background: linear-gradient(180deg, #172036, var(--panel) 60%);
+  border: 1px solid color-mix(in srgb, var(--accent) 16%, var(--line));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 20px 44px -26px rgba(0, 0, 0, 0.9);
+}
+
+h2 {
+  color: color-mix(in srgb, var(--accent) 55%, var(--text));
+}
+
+.brand {
+  font-weight: 800;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.brand__mark {
+  color: inherit;
+}
+
+.suite {
+  background: rgba(10, 14, 28, 0.7);
+  border-color: var(--line);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.suite__item {
+  color: var(--muted);
+}
+
+.suite__item--on {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: var(--accent-ink);
+}
+
+.primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: var(--accent-ink);
+  box-shadow: 0 12px 32px -12px var(--accent);
+  transition: transform 0.12s, box-shadow 0.2s;
+}
+
+.primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 36px -12px var(--accent);
+}
+
+.primary:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+.chip {
+  background: var(--panel-2);
+  border-color: var(--line);
+  color: var(--text);
+  transition: border-color 0.15s, background 0.15s, transform 0.1s;
+}
+
+.chip:hover:not(:disabled) {
+  border-color: color-mix(in srgb, var(--accent) 60%, var(--line));
+}
+
+.chip--on {
+  background: color-mix(in srgb, var(--accent) 22%, var(--panel-2));
+  border-color: var(--accent);
+  color: var(--text);
+  box-shadow: 0 0 16px -6px var(--accent);
+}
+
+.select select {
+  background-color: var(--panel-2);
+  border-color: var(--line);
+}
+
+.footer {
+  color: var(--muted);
+}
+
+/* ---- Frequency Player flourishes ---- */
+
+.hero--playing {
+  border-color: var(--accent);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 0 0 1px var(--accent),
+    0 0 60px -14px var(--accent),
+    0 0 90px -30px var(--accent-2);
+}
+
+.hero__label {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero__label sub {
+  -webkit-text-fill-color: var(--muted);
+}
+
+.hero__hz {
+  text-shadow: 0 0 40px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.hero__hz span {
+  color: var(--muted);
+}
+
+.scope {
+  display: block;
+  width: 100%;
+  height: 64px;
+  margin: -4px 0 10px;
+  overflow: visible;
+}
+
+.scope__axis {
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-dasharray: 4 6;
+}
+
+.scope__wave {
+  fill: none;
+  stroke-width: 3;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  opacity: 0.45;
+  transition: opacity 0.3s;
+}
+
+.scope--on .scope__wave {
+  opacity: 1;
+  filter: drop-shadow(0 0 6px var(--accent));
+}
+
+.ruler {
+  background: linear-gradient(90deg, var(--panel) 0%, #202a4a 20%, #202a4a 80%, var(--panel) 100%);
+  border-color: var(--line);
+}
+
+.ruler__tick {
+  border-left-color: #c9d3ea;
+}
+
+.ruler__tick--note {
+  border-left-color: #ffffff;
+}
+
+.ruler__tick--sharp {
+  border-left-color: #8f9bbd;
+}
+
+.ruler__tick--sharp span {
+  color: #a7b3d2;
+}
+
+.ruler__cursor {
+  width: 4px;
+  margin-left: -2px;
+  border-radius: 2px;
+  background: linear-gradient(var(--accent), var(--accent-2));
+  box-shadow: 0 0 14px var(--accent), 0 0 24px var(--accent-2);
+}
+
+.step {
+  background: var(--panel-2);
+  border-color: var(--line);
+  transition: border-color 0.15s, background 0.15s, transform 0.08s;
+}
+
+.step:hover {
+  border-color: color-mix(in srgb, var(--accent) 60%, var(--line));
+}
+
+.step:active {
+  transform: scale(0.95);
+  background: color-mix(in srgb, var(--accent) 30%, var(--panel-2));
+}
+
+.sweep input,
+.volume input {
+  accent-color: var(--accent-2);
+}
+
+.sweep__scale span {
+  color: var(--muted);
+}
+
+.playbtn {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: var(--accent-ink);
+  box-shadow: 0 12px 36px -12px var(--accent-2);
+  transition: transform 0.12s, box-shadow 0.2s;
+}
+
+.playbtn:hover {
+  transform: translateY(-1px);
+}
+
+.playbtn:active {
+  transform: scale(0.98);
+}
+
+.playbtn--on {
+  background: linear-gradient(135deg, #ff7a59, var(--bad));
+  color: #2a0612;
+  box-shadow: 0 12px 36px -12px var(--bad);
+}
+
+.wave {
+  background: var(--panel-2);
+  border-color: var(--line);
+}
+
+.wave svg {
+  stroke: #c3cde6;
+}
+
+.wave--on {
+  background: color-mix(in srgb, var(--accent) 20%, var(--panel-2));
+  border-color: var(--accent);
+  box-shadow: 0 0 16px -6px var(--accent);
+}
+
+.wave--on svg {
+  stroke: var(--accent);
+  filter: drop-shadow(0 0 4px var(--accent));
+}
+
+.wave__label {
+  color: #c3cde6;
+}
+
+.wave--on .wave__label {
+  color: var(--text);
+}
+
+.pkey--white {
+  background: linear-gradient(#ffffff, #e2e8f6);
+  border-color: #7f8bad;
+  color: #2a3150;
+}
+
+.pkey--black {
+  background: linear-gradient(#2c3452, #090c16);
+}
+
+.pkey--white:hover {
+  background: linear-gradient(#ffffff, #eef0ff);
+}
+
+.pkey--on.pkey--white {
+  background: linear-gradient(#f4edff, var(--accent) 55%, var(--accent-2));
+  color: var(--accent-ink);
+  box-shadow: 0 0 22px -2px var(--accent);
+}
+
+.pkey--on.pkey--black {
+  background: linear-gradient(var(--accent), var(--accent-2));
+  box-shadow: 0 0 20px -2px var(--accent-2);
+}
+
+.toggle {
+  color: #c3cde6;
+}
+
+.toggle input {
+  accent-color: var(--accent);
+}
+
+@media (min-width: 960px) {
+  .presets {
+    background: linear-gradient(180deg, #172036, var(--panel) 60%);
+    border-color: color-mix(in srgb, var(--accent) 16%, var(--line));
+  }
+
+  .presets::before {
+    color: color-mix(in srgb, var(--accent) 55%, var(--text));
+  }
+
+  .scope {
+    height: 80px;
+  }
+}
+
+@media (max-width: 559px) {
+  .transport {
+    background: color-mix(in srgb, #121829 86%, transparent);
+    border-color: color-mix(in srgb, var(--accent) 30%, var(--line));
+  }
+}
+
+.ruler__cursor {
+  bottom: auto;
+  height: 34px;
 }

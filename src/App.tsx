@@ -5,6 +5,7 @@ import { Piano } from './components/Piano'
 import { SuiteNav } from './components/SuiteNav'
 import { RepeatButton } from './components/RepeatButton'
 import { Ruler } from './components/Ruler'
+import { Scope } from './components/Scope'
 import { clampHz, formatHz, hzToSlider, parseHz, roundHz, shiftSemitones, SLIDER_STEPS, sliderToHz, snapToNote } from './frequency'
 import { load, save } from './storage'
 
@@ -179,6 +180,7 @@ export function App() {
               <span>Hz</span>
             </button>
           )}
+          <Scope hz={hz} waveform={waveform} playing={playing} />
           <Ruler hz={hz} a4={a4} snap={snap} onChange={setHz} />
           <p className="hint">Drag the dial · tap the number to type · tap a key to jump</p>
         </section>

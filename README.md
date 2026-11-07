@@ -10,6 +10,7 @@ Frequency Player is a tone and frequency generator that runs in the browser. Pla
 - **Step buttons:** `÷2` and `×2` jump an octave, `−½` and `+½` a semitone, and `−1`, `−.1`, `+.1`, `+1` change by hertz. Hold a button to repeat.
 - **Range slider:** sweeps the full 20 Hz–20 kHz range on a logarithmic scale, so every octave gets the same length.
 - **Piano:** all 88 keys, A0 to C8. Tap a key to set its exact frequency. When the tone is stopped, a tap also plays a short preview. The keyboard scrolls to follow the current note.
+- **Scope:** the wave under the frequency shows the current waveform; it scrolls while the tone plays and shows more cycles the higher the pitch.
 - **Note readout:** the note name and octave nearest the current frequency, its offset in cents, and **Snap to** for jumping to that exact note.
 - The menu at the top sets the reference pitch for A4 (415, 432, 435, 440, 442, or 444 Hz), which changes every note frequency.
 - Presets jump to common test tones: 60 Hz mains hum, middle C, 432 Hz, A440, 1 kHz, and 10 kHz.

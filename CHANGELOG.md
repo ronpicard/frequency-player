@@ -2,6 +2,16 @@
 
 All notable changes to Frequency Player are documented in this file, following the [Keep a Changelog](https://keepachangelog.com/) format.
 
+## [1.2.0] - 2026-11-07
+
+### Changed
+
+- A brighter, higher-contrast look: a near-black background with violet and pink glows, lighter panels with crisp edges, brighter secondary text, gradient buttons, and a glowing dial cursor and piano key.
+
+### Added
+
+- A live waveform scope under the frequency draws the current wave shape, scrolls while the tone plays, and packs in more cycles as the pitch rises.
+
 ## [1.1.0] - 2026-11-07
 
 ### Added
