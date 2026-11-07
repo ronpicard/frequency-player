@@ -144,25 +144,24 @@ export function App() {
             </button>
           </div>
           {editing ? (
-            <form
-              className="hero__edit"
-              onSubmit={(e) => {
-                e.preventDefault()
-                commitDraft()
-              }}
-            >
+            // Not a <form>: sandboxed embeds without allow-forms would swallow Enter.
+            <div className="hero__edit">
               <input
                 autoFocus
                 inputMode="decimal"
+                enterKeyHint="done"
                 value={draft}
                 onChange={(e) => setDraft(e.target.value)}
                 onBlur={commitDraft}
-                onKeyDown={(e) => e.key === 'Escape' && setEditing(false)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') commitDraft()
+                  else if (e.key === 'Escape') setEditing(false)
+                }}
                 aria-label="Frequency in hertz"
                 aria-invalid={parseHz(draft) === null}
               />
               <span>Hz</span>
-            </form>
+            </div>
           ) : (
             <button
               type="button"
